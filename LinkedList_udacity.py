@@ -8,22 +8,32 @@ particular value.
 Then, use "Test Run" and "Submit" to run the test cases
 at the bottom."""
 
+#definition for Element in the linkedlist, or what others call a node
+#each element has 2 fields, value and next(which is the pointer)
 class Element(object):
     def __init__(self, value):
         self.value = value
         self.next = None
         
 class LinkedList(object):
+    #this just give self.head a default value of none if nothing is passed in
     def __init__(self, head=None):
         self.head = head
         
     def append(self, new_element):
+        #local var current, which is set to class variable self.head
         current = self.head
+        #bool check if self.head is not none
         if self.head:
+            #bool check if current.next is not none
             while current.next:
+                #travel along pointer of to current.next, which essentially is 
+                #the next element's value field. 
                 current = current.next
+            #break out of while loop when you reach the end of the linkedlist
             current.next = new_element
         else:
+            #since self.head is none, we just declare the new_element as self.head
             self.head = new_element
             
     def get_position(self, position):
@@ -34,7 +44,7 @@ class LinkedList(object):
         current = self.head
         if position<1:
             return None
-
+        #while current is not None and counter <=position
         while current and counter <= position:
             if counter == position:
                 return current
@@ -53,9 +63,13 @@ class LinkedList(object):
         if position < 1:
             return
         elif position == 1:
+            #since there's only the head element in the linkedlist,
+            #we simply make the new_element the head
             new_element.next = current
-            self.head.next = new_element
+            self.head = new_element
         else:
+            #since we are definitely not inserting in pos 1,
+            #we can safely asumme that there will be a previous element
             prev = self.get_position(position-1)
             nxt = self.get_position(position)
             prev.next = new_element
@@ -66,13 +80,16 @@ class LinkedList(object):
         """Delete the first node with a given value."""
         current = self.head
         prev = None
-     
+        #we loop through to find the value that matches element value
         while current.value != value and current.next:
             prev = current
             current = current.next
+        #there is a match!
         if current.value == value:
+            #having a prev means "current" is definitely not the head
             if prev:
                 prev.next = current.next
+            #the only case is "current" being the head
             else:
                 self.head = current.next
         
