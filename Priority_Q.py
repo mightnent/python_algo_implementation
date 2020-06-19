@@ -1,7 +1,7 @@
 class Queue:
     def __init__(self):
         self.storage = []
-        #the Q will look like [(2, 1), (1, 1), (1, 2), (1, 3)]
+        #the Q will look like [(1, 1), (1, 2), (1, 3)]
 
     #higher the number, greater the priority
     def enqueue(self, priority,new_element):
