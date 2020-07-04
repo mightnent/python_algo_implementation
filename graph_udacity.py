@@ -53,10 +53,7 @@ class Graph(object):
         of tuples that looks like this:
         (To Node, Edge Value)"""
         lst = self.get_edge_list()
-        count = 0
-        for triple in lst:
-            if triple[1]>count:
-                count = triple[1]
+        count = self.get_count()
         adj_lst = [None]*(count+1)
         for triple in lst:
             if adj_lst[triple[1]] == None:
@@ -65,7 +62,13 @@ class Graph(object):
                 adj_lst[triple[1]].append((triple[2],triple[0]))
         return adj_lst
 
-
+    def get_count(self):
+        lst = self.get_edge_list()
+        count = 0
+        for triple in lst:
+            if triple[2]>count:
+                count = triple[2]
+        return count
     
     def get_adjacency_matrix(self):
         """Return a matrix, or 2D list.
@@ -73,7 +76,16 @@ class Graph(object):
         column numbers represent to nodes.
         Store the edge values in each spot,
         and a 0 if no edge exists."""
-        return []
+        lst = self.get_adjacency_list()
+        count = self.get_count()
+        adj_matrix = matrix = [ [ 0 for i in range(count+1) ] for j in range(count+1) ]
+        for i in range(len(lst)):
+            if lst[i]:
+                for j in range(len(lst[i])):
+                    adj_matrix[i][lst[i][j][0]]= lst[i][j][1]
+        return adj_matrix
+
+
 
 graph = Graph()
 graph.insert_edge(100, 1, 2)
