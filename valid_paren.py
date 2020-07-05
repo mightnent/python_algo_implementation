@@ -23,12 +23,23 @@ def valid_parenthesis(s):
     for i in s:
         if i=="(" or i=="{" or i=="[":
             stack.append(i)
-        if i==")" or i=="}" or i=="]":
-            last = stack.pop()
-            if last == "(" and i !=")":
+        else:
+            if  len(stack)==0:
                 return False
-            if last == "{" and i!="}":
-                return False
-            if last == "[" and i!="]":
-                return False
+            if i==")" or i=="}" or i=="]":
+                last = stack.pop()
+                if last == "(" and i !=")":
+                    return False
+                if last == "{" and i!="}":
+                    return False
+                if last == "[" and i!="]":
+                    return False
+    if len(stack)>0:
+        return False
     return True
+
+"""
+Analysis:
+time complexity: O(n)
+space complexity: O(n)
+"""
