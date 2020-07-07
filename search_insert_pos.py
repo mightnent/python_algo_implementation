@@ -12,6 +12,8 @@ acknowledge the naive solution of O(n) time
 
 #using binary search
 def search_insert(arr,target):
+    if arr == [] or arr==None:
+        return -1
     low= 0
     high = len(arr)-1
     while(low<=high):
