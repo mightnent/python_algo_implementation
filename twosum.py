@@ -16,3 +16,6 @@ def twosums(arr,target):
       if arr[i]+arr[j] == target:
         return [i,j]
 
+"""
+space complexity: O(n)
+"""
