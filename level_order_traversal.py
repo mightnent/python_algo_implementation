@@ -31,3 +31,11 @@ class Level_Order_Traversal():
                 size -= 1
             levels.append(level)
         return levels
+
+"""
+analysis:
+although there is nested while loop, it is actually only going over each item once.
+so is still O(n)
+space complexity: levels take up n nodes. and then level take up k nodes, where k is the largest level. 
+O(n+k)
+"""
