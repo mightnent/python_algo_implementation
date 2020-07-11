@@ -35,6 +35,22 @@ class LinkedList(object):
         else:
             #since self.head is none, we just declare the new_element as self.head
             self.head = new_element
+    
+    def append_loop(self,new_element,n):
+        current = self.head
+        if self.head:
+            i=0
+            while i<n:
+                current = current.next
+                i+=1
+            temp = current
+            current=self.head
+            while current.next:
+                current = current.next
+            current.next = new_element
+            current.next.next = temp
+        else:
+            self.head = new_element
             
     def get_position(self, position):
         """Get an element from a particular position.
